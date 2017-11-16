@@ -32,8 +32,8 @@ export default {
       display: inline-block
       width: 33.3%
       height: 50%
-      background: red
-      border: 2px solid green
+      background: #1cd388
+      border: 2px solid #fff
 
 
 </style>
