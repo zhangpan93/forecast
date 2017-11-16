@@ -7,6 +7,7 @@ import event from './components/event'
 import run from './components/run'
 import forecast from './components/forecast'
 import login from './components/login'
+
 // Vue.config.productionTip = false
 
 /* eslint-disable no-new */
