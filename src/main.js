@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import event from './components/event'
 import run from './components/run'
 import forecast from './components/forecast'
@@ -13,6 +14,7 @@ import login from './components/login'
 /* eslint-disable no-new */
 
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
 const routes = [
   {
