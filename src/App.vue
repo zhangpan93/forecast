@@ -5,21 +5,44 @@
         <div class="brand-wrapper">
           <span class="brand"></span>
         </div>
-        <div class="nav-item" style="margin-top: 0">
-          <router-link to="/run">运行</router-link>
+        <div class="nav-item" style="margin-top: 10px">
+          <router-link to="/run">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+            <p>运行</p>
+          </router-link>
         </div>
         <div class="nav-item">
-          <router-link to="/forecast">预测</router-link>
+          <router-link to="/forecast">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <p>预警</p>
+          </router-link>
         </div>
         <div class="nav-item">
-          <router-link to="/event">事件</router-link>
+          <router-link to="/event">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+            <p>事件</p>
+          </router-link>
         </div>
         <div class="nav-item">
-          <router-link to="/search">搜索</router-link>
+          <router-link to="/search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <p>搜索</p>
+          </router-link>
         </div>
       </div>
-      <div class="nav-item">
-        <router-link to="/login">登陆</router-link>
+      <div class="nav-bottom">
+        <div class="nav-item">
+          <router-link to="/login">
+            <i class="fa fa-user-o" aria-hidden="true"></i>
+            <p>登陆</p>
+          </router-link>
+        </div>
+        <div class="nav-item">
+          <router-link to="/setting">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            <p>设置</p>
+          </router-link>
+        </div>
       </div>
     </div>
     <div class="header">换流阀内冷水</div>
@@ -33,9 +56,11 @@
 
 <script>
 export default {
-  components: {
-   
-  }
+  data () {
+    return {
+      
+    }
+  } 
 }
 </script>
 
@@ -63,12 +88,16 @@ export default {
       background-image: url("./assets/brand.png")
   .nav-item
     height: 60px
-    line-height: 60px
+    line-height: 25px
     text-align: center
     margin: 20px 0
+    & .fa 
+      font-size: 18px
     &>a
       text-decoration: none
       display: block
+      height: 100%
+      padding-top: 4px
       color: #b2b4c4
       border-radius: 3px
       &:hover
