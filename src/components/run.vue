@@ -2,8 +2,8 @@
   <div class="container">
     <div class="card-wrapper">
       <ul style="height:100%">
-      	<li v-for="(item,index) in array" class="card">
-           <div class="echarts" :id="classMap[index]"></div>
+      	<li v-for="(item,index) in idMap" class="card">
+           <div class="echarts" :id="item"></div>
       	</li>
       </ul>	
     </div>
@@ -16,10 +16,9 @@ import echarts from "echarts"
 export default {
   data () {
     return {
-      array: [1,2,3,4,5,6],
-      date: [1],
+      date: [],
       waterLevel: {},
-      classMap: ["one","twe","three","four","five","six"]
+      idMap: ["one","twe","three","four","five","six"]
     }
   },
   created () {
@@ -44,6 +43,7 @@ export default {
   },
   methods: {
     loadData () {
+      // console.log(this.waterLevel.four)
       var myChart1 = echarts.init(document.getElementById('one'));
       var myChart2 = echarts.init(document.getElementById('four'));
       var myChart3 = echarts.init(document.getElementById('twe'));
