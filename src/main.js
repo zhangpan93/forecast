@@ -9,10 +9,10 @@ import run from './components/run'
 import forecast from './components/forecast'
 import login from './components/login'
 
+require('!style-loader!css-loader!./font-awesome-4.7.0/css/font-awesome.min.css')
 // Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
