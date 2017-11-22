@@ -111,7 +111,7 @@ export default {
         width: 433px
         height: 360px
         margin: 10px
-        border: 2px solid #444
+        border: 1px solid #000
         padding: 20px
         border-radius: 10px
         .echarts
