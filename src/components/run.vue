@@ -41,7 +41,7 @@ export default {
           type: 'continuous',
           seriesIndex: 0,
           min: 0,
-          max: 6
+          max: 100
         }, 
         title: {
           left: '2%',

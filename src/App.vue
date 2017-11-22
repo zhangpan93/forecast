@@ -45,7 +45,8 @@
         </div>
       </div>
     </div>
-    <div class="header">换流阀内冷水</div>
+    <!-- <div class="header">换流阀内冷水</div> -->
+    <v-header></v-header>
     <div class="background">
       <keep-alive>
         <router-view></router-view>
@@ -55,8 +56,12 @@
 </template>
 
 <script>
+import header from './components/header'
+
 export default {
-  
+  components: {
+    "v-header": header
+  }
 }
 </script>
 
@@ -66,6 +71,7 @@ export default {
 .nav
   background: #2d2c3e
   position: fixed
+  z-index: 999
   width: 60px
   height: 100%
   border-radius: 2px
@@ -101,17 +107,6 @@ export default {
       &.active
         color: #fff
         background: rgba(178, 180, 196,0.2)
-.header
-  height: 50px
-  line-height: 50px
-  font-size: 20px
-  padding-left: 30px
-  font-weight: 400
-  position: fixed
-  top: 0
-  left: 60px
-  width: 100%
-  background: #fff
 .background
   height: 100%
   width: 100%
