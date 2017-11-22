@@ -11,8 +11,7 @@ const portfinder = require('portfinder')
 const express = require('express')
 const app = express()
 var appData = require('../data.json')
-var date = appData.date
-var waterLevel = appData.waterLevel
+var cooling = appData.cooling
 var apiRoutes = express.Router()
 app.use('/api',apiRoutes)
 
@@ -41,16 +40,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     },
     before: function(app) {
-      app.get('/api/date',(req,res) => {
+      app.get('/api/cooling',(req,res) => {
         res.json({
           errno: 0,
-          data: date
-        })
-      })
-      app.get('/api/waterLevel',(req,res) => {
-        res.json({
-          errno: 0,
-          data: waterLevel
+          data: cooling
         })
       })
     }

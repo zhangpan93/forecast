@@ -22,19 +22,11 @@ export default {
     }
   },
   created () {
-    this.$http.get('/api/date').then((response) => {
+    this.$http.get('/api/cooling').then((response) => {
       response = response.body;
       if(response.errno === 0) {
-        this.date = response.data;
-        this.$nextTick(() => {
-          this.loadData();
-        })
-      }
-    });
-    this.$http.get('/api/waterLevel').then((response) => {
-      var response = response.body;
-      if(response.errno === 0) {
-        this.waterLevel = response.data;
+        this.date = response.data.date;
+        this.waterLevel = response.data.waterLevel;
         this.$nextTick(() => {
           this.loadData();
         })
@@ -96,6 +88,9 @@ export default {
       }
       
     }
+  },
+  mounted () {
+
   }
 
 }
