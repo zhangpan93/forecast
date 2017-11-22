@@ -17,7 +17,7 @@ export default {
   data () {
     return {
       date: [],
-      waterLevel: {},
+      waterLevel: [],
       idMap: ["one","twe","three","four","five","six"]
     }
   },
@@ -42,15 +42,8 @@ export default {
     });
   },
   methods: {
-    loadData () {
-      // console.log(this.waterLevel.four)
-      var myChart1 = echarts.init(document.getElementById('one'));
-      var myChart2 = echarts.init(document.getElementById('four'));
-      var myChart3 = echarts.init(document.getElementById('twe'));
-      var myChart4 = echarts.init(document.getElementById('five'));
-      var myChart5 = echarts.init(document.getElementById('three'));
-      var myChart6 = echarts.init(document.getElementById('six'));
-      var option = {
+    setOption (time,waterLevel) {
+      return {
         visualMap: {
           show: false,
           type: 'continuous',
@@ -60,7 +53,7 @@ export default {
         }, 
         title: {
           left: '5%',
-          text: '数据'
+          text: time
         },
         tooltip: {
           trigger: 'axis'
@@ -91,18 +84,18 @@ export default {
         series: {
           type: 'line',
           showSymbol: false,
-          data: this.waterLevel.four
+          data: waterLevel
         }
-      } 
-      myChart1.setOption(option);
-      myChart2.setOption(option);
-      myChart3.setOption(option);
-      myChart4.setOption(option);
-      myChart5.setOption(option);
-      myChart6.setOption(option);
+      }
+    },
+    loadData () { 
+      var charts = [];
+      for(var i=0;i<this.idMap.length;i++){
+        charts[i] = echarts.init(document.getElementById(this.idMap[i]));
+        charts[i].setOption(this.setOption(this.waterLevel[i].time,this.waterLevel[i].data));
+      }
+      
     }
-  },
-  mounted () {
   }
 
 }
