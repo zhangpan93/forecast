@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="card-wrapper">
-      <ul style="height:100%">
+      <ul class="card-container">
       	<li v-for="(item,index) in idMap" class="card">
            <div class="echarts" :id="item"></div>
       	</li>
@@ -34,7 +34,7 @@ export default {
     });
   },
   methods: {
-    setOption (time,waterLevel) {
+    setOption (date,waterLevel) {
       return {
         visualMap: {
           show: false,
@@ -44,55 +44,51 @@ export default {
           max: 6
         }, 
         title: {
-          left: '5%',
-          text: time
+          left: '2%',
+          text: waterLevel.time        //时间段标题
         },
         tooltip: {
           trigger: 'axis'
         },
         toolbox: {
           show: true,
-          right: '8%',
+          right: '2%',
           feature: {
             dataZoom: {
               yAxisIndex: 'none'
             },
-            magicType: {type: ['bar']},
+            magicType: {type: ['bar','line']},
             restore: {},
             saveAsImage: {}
           }
         },
         xAxis: {
-          data: this.date,
+          data: date,                //横轴日期
           boundaryGap : false
         }, 
         yAxis: {
           splitLine: {show: false},
-
         },
-        // grid: {
-        //   bottom: '60%'
-        // }, 
+        grid: {
+          bottom: '10%',
+          right: '4%'
+        }, 
         series: {
           type: 'line',
           showSymbol: false,
-          data: waterLevel
+          data: waterLevel.data        //纵轴水位
         }
       }
     },
+    //为容器设置echarts
     loadData () { 
       var charts = [];
       for(var i=0;i<this.idMap.length;i++){
         charts[i] = echarts.init(document.getElementById(this.idMap[i]));
-        charts[i].setOption(this.setOption(this.waterLevel[i].time,this.waterLevel[i].data));
-      }
-      
+        charts[i].setOption(this.setOption(this.date,this.waterLevel[i]));
+      } 
     }
-  },
-  mounted () {
-
   }
-
 }
 </script>
 
@@ -101,18 +97,25 @@ export default {
 .container
   background: #fff
   border-radius: 4px
+  overflow: auto
   .card-wrapper
     height: 100%
-    .card
-      display: inline-block
-      width: 433px
-      height: 360px
-      margin: 10px
-      border: 2px solid #444
-      padding: 20px
-      border-radius: 10px
-      .echarts
-        width: 390px
-        height: 260px
+    .card-container
+      height: 100%
+      display: flex
+      justify-content: space-around
+      align-items: center
+      flex-wrap: wrap
+      .card
+        display: inline-block
+        width: 433px
+        height: 360px
+        margin: 10px
+        border: 2px solid #444
+        padding: 20px
+        border-radius: 10px
+        .echarts
+          width: 389px
+          height: 300px
 
 </style>
