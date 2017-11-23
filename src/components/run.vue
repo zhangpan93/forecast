@@ -93,9 +93,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="sass">
+<style lang="sass" scoped>
 .container
-  background: #fff
+  // background: #fff
   border-radius: 4px
   overflow: auto
   .card-wrapper
@@ -108,6 +108,7 @@ export default {
       flex-wrap: wrap
       .card
         display: inline-block
+        background: #fff
         width: 433px
         height: 360px
         margin: 10px
