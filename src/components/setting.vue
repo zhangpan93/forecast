@@ -1,6 +1,6 @@
 <template>
-  <div class="event">
-    event
+  <div class="setting">
+    setting
   </div>
 </template>
 

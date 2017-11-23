@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="title">换流阀内冷水</div>
+    <div class="title">内冷水系统</div>
     <div class="time">{{timemsg}}</div>
   </div>
 </template>
@@ -35,19 +35,19 @@ export default {
 <style lang="sass">
 .header
   height: 50px
+  width: 100%
   line-height: 50px
   font-size: 20px
-  padding-left: 70px
+  padding-left: 60px
+  margin-left: 20px
   font-weight: 400
   position: fixed
-  width: 100%
   background: #2d2c3e
   color: #fff
   display: flex
-  justify-content: space-between
   .title
-    flex: 2
-  .time
     flex: 1
+  .time
+    flex-basis: 270px
 
 </style>

@@ -7,6 +7,7 @@ import VueResource from 'vue-resource'
 import event from './components/event'
 import run from './components/run'
 import forecast from './components/forecast'
+import search from './components/search'
 import login from './components/login'
 
 require('!style-loader!css-loader!./font-awesome-4.7.0/css/font-awesome.min.css')
@@ -32,6 +33,10 @@ const routes = [
   {
   	path: '/forecast',
   	component: forecast
+  },
+  {
+    path: '/search',
+    component: search
   },
   {
   	path: '/login',
