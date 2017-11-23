@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    event
+    login
   </div>
 </template>
 
