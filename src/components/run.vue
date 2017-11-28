@@ -40,8 +40,8 @@ export default {
           show: false,
           type: 'continuous',
           seriesIndex: 0,
-          min: 0,
-          max: 100
+          min: 40,
+          max: 60
         }, 
         title: {
           left: '2%',
@@ -68,6 +68,8 @@ export default {
         }, 
         yAxis: {
           splitLine: {show: false},
+          min: 30,
+          max: 60
         },
         grid: {
           bottom: '10%',
