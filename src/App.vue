@@ -5,7 +5,7 @@
         <div class="brand-wrapper">
           <span class="brand"></span>
         </div>
-        <div class="nav-item" style="margin-top: 10px">
+        <div class="nav-item" style="margin-top: 25px">
           <router-link to="/run">
             <i class="fa fa-line-chart" aria-hidden="true"></i>
             <p>运行</p>
@@ -23,18 +23,12 @@
             <p>事件</p>
           </router-link>
         </div>
-        <div class="nav-item">
-          <router-link to="/search">
-            <i class="fa fa-search" aria-hidden="true"></i>
-            <p>搜索</p>
-          </router-link>
-        </div>
       </div>
       <div class="nav-bottom">
         <div class="nav-item">
           <router-link to="/login">
             <i class="fa fa-user-o" aria-hidden="true"></i>
-            <p>登陆</p>
+            <p>张攀</p>
           </router-link>
         </div>
         <div class="nav-item">
@@ -45,7 +39,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="header">换流阀内冷水</div> -->
     <v-header></v-header>
     <div class="background">
       <keep-alive>
@@ -92,7 +85,7 @@ export default {
     height: 60px
     line-height: 25px
     text-align: center
-    margin: 20px 0
+    margin: 25px 0
     & .fa 
       font-size: 18px
     &>a

@@ -97,7 +97,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
 .container
-  // background: #fff
   border-radius: 4px
   overflow: auto
   .card-wrapper

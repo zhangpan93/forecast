@@ -5,22 +5,31 @@
       	<li class="card" style="border-right: 1px solid #e8e2e2">
            <div class="echart-container" id="one"></div>
            <ul class="result-container">
+             <div style="margin: 30px 20px 0">
+                <span style="margin-left: 30px">时间段</span>
+                <span style="margin-left: 70px">膨胀水箱实际值(%)</span>
+                <span style="margin-left: 30px">膨胀水箱预测值(%)</span>
+                <span style="margin-left: 30px">偏差(%)</span>
+             </div> 
            	 <li v-for="(item,index) in timeRange" class="timeRange">
            	 	 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
            	   <div class="result-item">{{item}}:</div>
-           	   <div class='percent'>1.34%</div>
-           	   <span class="data">54</span>  
+               <div class='percent'>{{errorRange1[index]}}</div>
+               <span class="data">{{waterLevel1[index]}}</span>  
+               <span class="truedata">{{waterLevelTrue[index]}}</span> 
            	 </li>
            </ul>
       	</li>
       	<li class="card">
            <div class="echart-container" id="twe"></div>
            <ul class="result-container">
+             <div style="margin: 30px 20px 0">
+                <span style="margin-left: 60px">时间段</span>
+                <span style="margin-left: 180px">膨胀水箱预测值(%)</span>
+             </div> 
            	 <li v-for="(item,index) in timeRange" class="timeRange">
-           	 	 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-           	   <div class="result-item">{{item}}:</div>
-           	   <div class='percent'>2.17%</div>
-           	   <span class="data">53</span>  
+           	   <div class="result-item" style="margin-left:50px">{{item}}:</div>
+           	   <span class="data" style="margin-right:220px">{{waterLevel2[index]}}</span>  
            	 </li>
            </ul>
       	</li>
@@ -36,12 +45,15 @@ export default {
   data () {
     return {
     	timeRange: ["00时-04时","04时-08时","08时-12时","12时-16时","16时-20时","20时-24时"],
-      time: ["0时","4时","8时","12时","16时","20时","24时"],
-      waterLevel: [26,49,87,43,62,14,58]
+      //time: ["0时","4时","8时","12时","16时","20时","24时"],
+      waterLevel1: [46.3,45.6,45.3,45.8,45.6,45.1],
+      waterLevelTrue: [46,45,45,46,44,45],
+      errorRange1: [0.65,1.33,0.67,-0.4,3.64,0.22],
+      waterLevel2: [45.6,45.3,45.7,45.9,46.3,46],
     }
   },
   methods: {
-  	setOption (title,waterLevel) {
+  	setOption (title,waterLevel,waterLevelTrue) {
   	  return {
   	  	title: {
             text: title,
@@ -52,7 +64,7 @@ export default {
             trigger: 'axis'
         },
         xAxis: {
-            data: this.time
+            data: this.timeRange
             // data.map(function (item) {
             //     return item[0];
             // })
@@ -60,7 +72,9 @@ export default {
         yAxis: {
             splitLine: {
                 show: false
-            }
+            },
+            min: 43,
+            max: 47
         },
         grid: {
           bottom: '10%',
@@ -87,63 +101,78 @@ export default {
         visualMap: {
             top: 0,
             right: 0,
+            precision: 1,
             pieces: [{
-                gt: 0,
-                lte: 20,
-                color: '#096'
-            }, {
-                gt: 20,
-                lte: 40,
-                color: '#ffde33'
-            }, {
                 gt: 40,
-                lte: 50,
-                color: '#ff9933'
-            }, {
-                gt: 50,
-                lte: 60,
+                lte: 44.5,
                 color: '#cc0033'
             }, {
-                gt: 60,
-                lte: 80,
+                gt: 44.5,
+                lte: 45,
+                color: '#ff9933'
+                //color: '#ffde33'
+            }, {
+                gt: 45,
+                lte: 45.5,
+                color: '#ffde33'
+                //color: '#ff9933'
+            }, {
+                gt: 45.5,
+                lte: 46,
+                color: '#096'
+            }, {
+                gt: 46,
+                lte: 46.5,
                 color: '#660099'
             }, {
-                gt: 80,
+                gt: 46.5,
                 color: '#7e0023'
             }],
             outOfRange: {
                 color: '#999'
             }
         },
-        series: {
-            name: 'Beijing AQI',
+        series: [{
+            name: title,
             type: 'line',
             data: waterLevel,
-            // data.map(function (item) {
-            //     return item[1];
-            // }),
+            smooth: false,   //关键点，为true是不支持虚线的，实线就用true
+            itemStyle:{
+                normal:{
+                    lineStyle:{
+                        type:'dotted'  //'dotted'虚线 'solid'实线
+                    }
+                }
+            },         
             markLine: {
                 silent: true,
                 data: [{
-                    yAxis: 20
+                    yAxis: 43.5
+                },{
+                    yAxis: 44.5
                 }, {
-                    yAxis: 40
+                    yAxis: 45
                 }, {
-                    yAxis: 50
+                    yAxis: 45.5
                 }, {
-                    yAxis: 60
+                    yAxis: 46
                 }, {
-                    yAxis: 80
+                    yAxis: 47
                 }]
             }
-        }
+        },
+        {
+            name: '今日水位实际值',
+            type: 'line',
+            data: waterLevelTrue,          
+        }]
   	  }
   	},
   	setChart () {
   	  var chart1 = echarts.init(document.getElementById("one"));
-  	  chart1.setOption(this.setOption("明天水位",this.waterLevel));
+  	  chart1.setOption(this.setOption("今日水位预测值",this.waterLevel1,this.waterLevelTrue));
   	  var chart2 = echarts.init(document.getElementById("twe"));
-  	  chart2.setOption(this.setOption("后天水位",this.waterLevel.reverse()));
+  	  chart2.setOption(this.setOption("明日水位预测值",this.waterLevel2));
   	}
   },
   mounted () {
@@ -185,20 +214,25 @@ export default {
             border-radius: 5px
           .fa 
             margin-right: 6px
-            color: red
+            color: green
           .result-item
             height: 52px
             line-height: 52px
             display: inline-block
+          .truedata
+            float: right
+            margin-right: 140px
+            height: 52px
+            line-height: 52px
           .data
             float: right
-            margin-right: 160px
+            margin-right: 110px
             height: 52px
             line-height: 52px
           .percent
             display: inline-block
             float: right
-            margin-right: 50px
+            margin-right: 40px
             height: 52px
             line-height: 52px
       

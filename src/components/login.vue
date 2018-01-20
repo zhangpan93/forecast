@@ -1,6 +1,11 @@
 <template>
-  <div class="hello">
-    login
+  <div class="login">
+    <div>
+    	
+    </div>>
+    <div>
+    	
+    </div>
   </div>
 </template>
 
